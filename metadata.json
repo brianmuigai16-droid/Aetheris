@@ -1,0 +1,6 @@
+{
+  "name": "Aetheris - Spatial Glass",
+  "description": "A futuristic spatial computing interface and spatial glass operating environment with dynamic refraction, 3D volumetric projections, and immersive workspaces.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

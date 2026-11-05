@@ -1,0 +1,121 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-display: 'Outfit', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+/* Spatial Glass Custom Utilities with Smooth Transitions */
+:root {
+  --glass-blur: 28px;
+  --glass-opacity: 0.06;
+  --glass-glint: 0.7;
+  --glass-tilt: 1;
+  --glass-transition-duration: 0.55s;
+  --glass-transition-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, var(--glass-opacity, 0.06));
+  backdrop-filter: blur(var(--glass-blur, 28px)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur, 28px)) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, calc(var(--glass-glint, 0.7) * 0.22));
+  box-shadow: 
+    0 24px 48px -12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px 0 rgba(255, 255, 255, calc(var(--glass-glint, 0.7) * 0.35)),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.3);
+  transition: 
+    backdrop-filter var(--glass-transition-duration) var(--glass-transition-ease),
+    -webkit-backdrop-filter var(--glass-transition-duration) var(--glass-transition-ease),
+    background-color var(--glass-transition-duration) var(--glass-transition-ease),
+    border-color var(--glass-transition-duration) var(--glass-transition-ease),
+    box-shadow var(--glass-transition-duration) var(--glass-transition-ease);
+}
+
+.glass-panel-subtle {
+  background: rgba(255, 255, 255, calc(var(--glass-opacity, 0.06) * 0.6));
+  backdrop-filter: blur(calc(var(--glass-blur, 28px) * 0.65));
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur, 28px) * 0.65));
+  border: 1px solid rgba(255, 255, 255, calc(var(--glass-glint, 0.7) * 0.12));
+  transition: 
+    backdrop-filter var(--glass-transition-duration) var(--glass-transition-ease),
+    -webkit-backdrop-filter var(--glass-transition-duration) var(--glass-transition-ease),
+    background-color var(--glass-transition-duration) var(--glass-transition-ease),
+    border-color var(--glass-transition-duration) var(--glass-transition-ease);
+}
+
+.glass-control {
+  background: rgba(255, 255, 255, calc(var(--glass-opacity, 0.06) + 0.04));
+  backdrop-filter: blur(calc(var(--glass-blur, 28px) * 0.5));
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur, 28px) * 0.5));
+  border: 1px solid rgba(255, 255, 255, calc(var(--glass-glint, 0.7) * 0.25));
+  transition: all 0.2s var(--glass-transition-ease);
+}
+
+.glass-control:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.glass-control:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.glass-specular-glow {
+  position: relative;
+}
+.glass-specular-glow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, var(--glass-glint, 0.7)), transparent);
+  pointer-events: none;
+  transition: opacity var(--glass-transition-duration) var(--glass-transition-ease);
+}
+
+/* Smooth Slider Tracks */
+input[type="range"] {
+  transition: background-color 0.3s ease, filter 0.3s ease;
+}
+input[type="range"]::-webkit-slider-thumb {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(0.95);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
